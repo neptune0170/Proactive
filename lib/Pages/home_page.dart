@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       appBar: AppBar(
-        title: Text('Hello , ' + user!.email.toString()),
+        title: Text('goood, ' + user!.email.toString()),
         backgroundColor: Colors.black,
         actions: <Widget>[
           Padding(
