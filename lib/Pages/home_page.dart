@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
@@ -15,6 +16,7 @@ import 'package:notesapp/Pages/Images/services/cloud_storage.dart';
 import 'package:notesapp/Pages/Images/services/media_service.dart';
 
 import 'package:notesapp/Pages/Notes/addnotes.dart';
+import 'package:notesapp/Pages/Notes/completed_note.dart';
 import 'package:notesapp/Pages/Notes/viewnote.dart';
 import 'package:notesapp/Pages/login_page.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -69,7 +71,7 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       appBar: AppBar(
-        title: Text('goood, ' + user!.email.toString()),
+        title: Text('Good, ' + user!.email.toString()),
         backgroundColor: Colors.black,
         actions: <Widget>[
           Padding(
@@ -93,8 +95,29 @@ class _HomePageState extends State<HomePage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: fileTypeWidget(
-                text1: 'Notes',
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  fileTypeWidget(
+                    text1: 'Notes',
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .push(
+                          MaterialPageRoute(
+                            builder: (context) => CompletedNotes(),
+                          ),
+                        )
+                            .then((value) {
+                          setState(() {});
+                        });
+                      },
+                      child: Text(
+                        'Completed Notes',
+                        style: TextStyle(color: Colors.blue),
+                      ))
+                ],
               ),
             ),
             //Notes Widget
@@ -411,7 +434,7 @@ class _HomePageState extends State<HomePage> {
       height: 200,
       width: MediaQuery.of(context).size.width,
       child: FutureBuilder<QuerySnapshot>(
-        future: notesref.get(),
+        future: notesref.where('Completed', isEqualTo: false).get(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data!.docs.length == 0) {
@@ -435,6 +458,10 @@ class _HomePageState extends State<HomePage> {
                   String formattedTime =
                       DateFormat.yMMMd().add_jm().format(mydateTime);
                   return InkWell(
+                    onLongPress: () {
+                      markAsCompleted(
+                          context, snapshot.data!.docs[index].reference);
+                    },
                     onTap: () {
                       Navigator.of(context)
                           .push(
@@ -450,53 +477,58 @@ class _HomePageState extends State<HomePage> {
                         setState(() {});
                       });
                     },
-                    child: Container(
-                      height: 200,
-                      width: 200,
-                      child: Card(
-                        color: bg,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "${data['title']}",
-                                style: TextStyle(
-                                  fontSize: 24.0,
-                                  fontFamily: "lato",
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Text(
-                                "${data['description']}",
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 4,
-                                style: TextStyle(
-                                  fontSize: 17.0,
-                                  fontFamily: "lato",
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey[350],
-                                ),
-                              ),
-                              //
-                              Container(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  formattedTime,
+                    child: Stack(children: [
+                      Container(
+                        height: 200,
+                        width: 200,
+                        child: Card(
+                          color: bg,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${data['title']}",
                                   style: TextStyle(
-                                    fontSize: 15.0,
+                                    fontSize: 24.0,
                                     fontFamily: "lato",
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  "${data['description']}",
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 4,
+                                  style: TextStyle(
+                                    fontSize: 17.0,
+                                    fontFamily: "lato",
+                                    fontWeight: FontWeight.bold,
                                     color: Colors.grey[350],
                                   ),
                                 ),
-                              ),
-                            ],
+                                //
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                      Positioned(
+                        bottom: 5,
+                        right: 30,
+                        child: Container(
+                          child: Text(
+                            formattedTime,
+                            style: TextStyle(
+                              fontSize: 15.0,
+                              fontFamily: "lato",
+                              color: Colors.grey[350],
+                            ),
+                          ),
+                        ),
+                      )
+                    ]),
                   );
                 });
           } else
@@ -505,6 +537,43 @@ class _HomePageState extends State<HomePage> {
             );
         },
       ),
+    );
+  }
+
+  markAsCompleted(BuildContext context, DocumentReference ref) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("Yes"),
+      onPressed: () {
+        var userData = {'Completed': true};
+        ref.update(userData);
+        Navigator.of(context).pop();
+        setState(() {});
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("AlertDialog"),
+      content: Text("Do you want Mark this task as completed"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 
@@ -553,14 +622,16 @@ class fileTypeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      width: MediaQuery.of(context).size.width,
-      child: Text(
-        text1!,
-        style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 35,
-            fontFamily: 'lato'),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          text1!,
+          style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 35,
+              fontFamily: 'lato'),
+        ),
       ),
     );
   }
