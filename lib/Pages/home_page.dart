@@ -149,53 +149,92 @@ class _HomePageState extends State<HomePage> {
         builder: (builder) {
           return new Container(
             height: 350.0,
-            color: Colors.transparent, //could change this to Color(0xFF737373),
-            //so you don't have to change MaterialApp canvasColor
+            color: Colors.transparent,
             child: new Container(
                 decoration: new BoxDecoration(
                     color: Colors.white,
                     borderRadius: new BorderRadius.only(
                         topLeft: const Radius.circular(10.0),
                         topRight: const Radius.circular(10.0))),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => AddNote()),
-                          ).then((value) {
-                            setState(() {});
-                          });
-                        },
-                        child: Text('Add Notes')),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                        onPressed: () async {
-                          saveImageInFirebase();
-                          setState(() {});
-                          Navigator.of(context).pop();
-                          setState(() {});
-                        },
-                        child: Text('Add Images')),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                        onPressed: () async {
-                          saveFilesInFirebase();
-                          setState(() {});
-                          Navigator.of(context).pop();
-                          setState(() {});
-                        },
-                        child: Text('Add PDF/Files'))
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.padding_rounded,
+                            color: Colors.black,
+                            size: 50,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => AddNote()),
+                                ).then((value) {
+                                  setState(() {});
+                                });
+                              },
+                              child: Text('Add Notes')),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          Image(
+                            image: AssetImage('assets/Images/addImage.png'),
+                            height: 50,
+                            width: 50,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          ElevatedButton(
+                              onPressed: () async {
+                                saveImageInFirebase();
+                                setState(() {});
+                                Navigator.of(context).pop();
+                                setState(() {});
+                              },
+                              child: Text('Add Images')),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          Image(
+                            image: AssetImage('assets/Images/addFile.png'),
+                            height: 50,
+                            width: 50,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          ElevatedButton(
+                              onPressed: () async {
+                                saveFilesInFirebase();
+                                setState(() {});
+                                Navigator.of(context).pop();
+                                setState(() {});
+                              },
+                              child: Text('Add PDF/Files')),
+                        ],
+                      )
+                    ],
+                  ),
                 )),
           );
         });
