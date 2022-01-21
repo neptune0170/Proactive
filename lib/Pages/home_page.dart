@@ -18,6 +18,7 @@ import 'package:notesapp/Pages/Images/services/media_service.dart';
 import 'package:notesapp/Pages/Notes/addnotes.dart';
 import 'package:notesapp/Pages/Notes/completed_note.dart';
 import 'package:notesapp/Pages/Notes/viewnote.dart';
+import 'package:notesapp/Pages/Streak/add_streak_page.dart';
 import 'package:notesapp/Pages/login_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -41,6 +42,10 @@ class _HomePageState extends State<HomePage> {
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .collection('Files');
+  CollectionReference streaksref = FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .collection('streaks');
 
   final User? user = FirebaseAuth.instance.currentUser!;
   @override
@@ -122,6 +127,13 @@ class _HomePageState extends State<HomePage> {
             ),
             //Notes Widget
             notesWidget(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: fileTypeWidget(
+                text1: 'Streaks',
+              ),
+            ),
+            StreaksWidget(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: fileTypeWidget(
@@ -232,7 +244,36 @@ class _HomePageState extends State<HomePage> {
                               },
                               child: Text('Add PDF/Files')),
                         ],
-                      )
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          Image(
+                            image: AssetImage('assets/Images/flame.png'),
+                            height: 50,
+                            width: 50,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => AddStreak()))
+                                    .then((_) {
+                                  setState(() {});
+                                });
+                              },
+                              child: Text('Create Task Streak')),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
                     ],
                   ),
                 )),
@@ -266,6 +307,146 @@ class _HomePageState extends State<HomePage> {
       print(e);
     }
   }
+
+  Widget StreaksWidget() {
+    return Container(
+      height: 200,
+      width: MediaQuery.of(context).size.width,
+      child: FutureBuilder<QuerySnapshot>(
+        future: streaksref.get(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data!.docs.length == 0) {
+              return Center(
+                child: Text(
+                  "You have no saved Files !",
+                  style: TextStyle(
+                    color: Colors.white70,
+                  ),
+                ),
+              );
+            }
+            return ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  Map data = snapshot.data!.docs[index].data() as Map;
+
+                  return InkWell(
+                    onLongPress: () async {
+                      await showDialogForImageDelete(
+                          context, snapshot.data!.docs[index].reference);
+                    },
+                    child: Stack(children: [
+                      Container(
+                        height: 200,
+                        width: 200,
+                        child: Card(
+                          color: Colors.white,
+                          child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.date_range,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text('${data['title']}',
+                                            style:
+                                                TextStyle(color: Colors.black)),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Center(
+                                      child: Container(
+                                        height: 60,
+                                        width: 100,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Image(
+                                              image: AssetImage(
+                                                  'assets/Images/flame.png'),
+                                              height: 40,
+                                              width: 40,
+                                            ),
+                                            Text(
+                                              '${data['current_streak']}',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 40),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Center(
+                                      child: data['streak_last_update_date'] !=
+                                              DateFormat("dd-MM-yyyy")
+                                                  .format(DateTime.now())
+                                                  .toString()
+                                          ? ElevatedButton(
+                                              onPressed: () {
+                                                snapshot
+                                                    .data!.docs[index].reference
+                                                    .update({
+                                                  'current_streak':
+                                                      data['current_streak'] +
+                                                          1,
+                                                  'streak_last_update_date':
+                                                      DateFormat("dd-MM-yyyy")
+                                                          .format(
+                                                              DateTime.now())
+                                                });
+                                                setState(() {});
+                                              },
+                                              child: Text('+1'))
+                                          : Text(
+                                              'Today\'s Task Completed',
+                                              style: TextStyle(
+                                                  color: Colors.green),
+                                            ),
+                                    )
+                                  ])),
+                        ),
+                      ),
+                    ]),
+                  );
+                });
+          } else
+            return Center(
+              child: Text('Loading'),
+            );
+        },
+      ),
+    );
+  }
+
+  // updateStreakInFirebase(
+  //   BuildContext context,
+  //   DocumentReference ref,
+  // ) async {
+  //   await ref.update(
+  //     {
+  //       'current_streak': 1,
+  //       // 'last_streak_date': DateFormat("dd-MM-yyyy").format(DateTime.now())
+  //     },
+  //   );
+  //   Navigator.of(context).pop();
+  // }
 
   Widget PdfFilesWidget() {
     return Container(
