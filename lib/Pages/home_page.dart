@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 import 'dart:io';
 import 'dart:math';
@@ -7,19 +8,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:notesapp/Pages/File/file_cloud_storage.dart';
 import 'package:notesapp/Pages/Images/services/cloud_storage.dart';
-
-import 'package:notesapp/Pages/Images/services/media_service.dart';
 
 import 'package:notesapp/Pages/Notes/addnotes.dart';
 import 'package:notesapp/Pages/Notes/completed_note.dart';
 import 'package:notesapp/Pages/Notes/viewnote.dart';
 import 'package:notesapp/Pages/Streak/add_streak_page.dart';
 import 'package:notesapp/Pages/login_page.dart';
+import 'package:notesapp/Provider/timeleft.info.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
@@ -66,7 +67,16 @@ class _HomePageState extends State<HomePage> {
     Color(0xfff7e300),
     Colors.teal[200],
   ];
+
   @override
+  void initState() {
+    Timer.periodic(Duration(seconds: 1), (t) {
+      var timerInfo = Provider.of<TimerInfo>(context, listen: false);
+      timerInfo.updateRemainingTime();
+    });
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -76,7 +86,12 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       appBar: AppBar(
-        title: Text('Good, ' + user!.email.toString()),
+        // title: Text('Good, ' + user!.email.toString()),
+        title: Consumer<TimerInfo>(
+          builder: (context, data, child) {
+            return Center(child: Text(data.getRemainingTime() + ' Left'));
+          },
+        ),
         backgroundColor: Colors.black,
         actions: <Widget>[
           Padding(
@@ -357,9 +372,14 @@ class _HomePageState extends State<HomePage> {
                                         SizedBox(
                                           width: 10,
                                         ),
-                                        Text('${data['title']}',
-                                            style:
-                                                TextStyle(color: Colors.black)),
+                                        Container(
+                                          width: 120,
+                                          child: Text('${data['title']}',
+                                              style: TextStyle(
+                                                  fontFamily: 'lato',
+                                                  color: Colors.black),
+                                              overflow: TextOverflow.ellipsis),
+                                        ),
                                       ],
                                     ),
                                     SizedBox(

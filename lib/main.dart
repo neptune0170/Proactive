@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:notesapp/Pages/home_page.dart';
 import 'package:notesapp/Pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:notesapp/Provider/timeleft.info.dart';
 import 'package:notesapp/utils/user_simple_preferences.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +28,9 @@ void main() async {
 
   await UserSimplePreferences.init();
 
-  runApp(MyApp());
+  // runApp(MyApp());
+  runApp(
+      ChangeNotifierProvider(create: (context) => TimerInfo(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -42,6 +46,9 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.white,
           scaffoldBackgroundColor: Color(0xff070706),
         ),
-        home: user == null ? LoginPage() : HomePage());
+        home: user == null ? LoginPage() : HomePage()
+        // ChangeNotifierProvider(
+        //     create: (context) => TimerInfo(), child: HomePage())
+        );
   }
 }
