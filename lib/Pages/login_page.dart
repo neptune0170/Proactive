@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     email = UserSimplePreferences.getEmail() ?? '';
-    print(email);
+    // print(email);
     password = UserSimplePreferences.getPassword() ?? '';
   }
 
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
       height: _deviceHeight * 0.065,
       width: _deviceWidth * 0.65,
       onPressed: () async {
-        print(password);
+        // print(password);
         if (_loginFormKey.currentState!.validate()) {
           _loginFormKey.currentState!.save();
           // _auth.loginUsingEmailAndPassword(_email!, password!);

@@ -86,7 +86,6 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       appBar: AppBar(
-        // title: Text('Good, ' + user!.email.toString()),
         title: Consumer<TimerInfo>(
           builder: (context, data, child) {
             return Center(child: Text(data.getRemainingTime() + ' Left'));
@@ -304,7 +303,7 @@ class _HomePageState extends State<HomePage> {
         Uint8List? file = result.files.first.bytes;
         String fileName = result.files.first.name;
         String fileExt = result.files.first.extension!;
-        print(file);
+        // print(file);
         String? _downloadURL = await FileCloudStorageService()
             .saveFileToStorage(user!.uid, file!, fileName);
         // String? imagebytefile = file.toString();
@@ -563,7 +562,7 @@ class _HomePageState extends State<HomePage> {
         Uint8List? file = result.files.first.bytes;
         String fileName = result.files.first.name;
         String fileExt = result.files.first.extension!;
-        print(file);
+        // print(file);
         String? _downloadURL = await CloudStorageService()
             .saveChatImageToStorage(user!.uid, file!, fileName);
         String? imagebytefile = file.toString();
