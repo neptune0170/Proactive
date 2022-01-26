@@ -2,27 +2,47 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ViewNote extends StatefulWidget {
-  final Map data;
-  final String time;
-  final DocumentReference ref;
+  int? priorityIndex;
+  Map data;
+  String time;
+  DocumentReference ref;
 
-  ViewNote(this.data, this.time, this.ref);
+  ViewNote(this.priorityIndex, this.data, this.time, this.ref);
 
   @override
-  _ViewNoteState createState() => _ViewNoteState();
+  _ViewNoteState createState() =>
+      _ViewNoteState(priorityIndex, data, time, ref);
 }
 
 class _ViewNoteState extends State<ViewNote> {
+  int? priorityIndex;
+  Map? data;
+  String? time;
+  DocumentReference? ref;
+
   String? title;
   String? des;
+  // int? priorityIndex;
 
   bool edit = true;
+
+  List<String> priorityList = <String>[
+    "Low",
+    "Medium",
+    "Urgent",
+  ];
+  int? savePriority = 0;
   GlobalKey<FormState> key = GlobalKey<FormState>();
+  _ViewNoteState(this.priorityIndex, this.data, this.time, this.ref);
 
   @override
   Widget build(BuildContext context) {
     title = widget.data['title'];
     des = widget.data['description'];
+    if (priorityIndex == null) {
+      priorityIndex = 0;
+    }
+    savePriority = priorityIndex;
     return SafeArea(
       child: Scaffold(
 //Save textButton
@@ -133,6 +153,32 @@ class _ViewNoteState extends State<ViewNote> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        children: [
+                          const Text(
+                            'Priority :',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Lato',
+                                fontSize: 21),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            height: 38,
+                            width: 300,
+                            child: ListView.builder(
+                              itemCount: priorityList.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return priorityChip(context, index);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
                       TextFormField(
                         decoration: InputDecoration.collapsed(
                           hintText: "Title",
@@ -215,9 +261,38 @@ class _ViewNoteState extends State<ViewNote> {
     if (key.currentState!.validate()) {
       // TODo : showing any kind of alert that new changes have been saved
       await widget.ref.update(
-        {'title': title, 'description': des},
+        {'title': title, 'description': des, 'Priority': savePriority},
       );
       Navigator.of(context).pop();
     }
+  }
+
+  Widget priorityChip(BuildContext context, int index) {
+    return Padding(
+      padding: EdgeInsets.only(right: 10),
+      child: ChoiceChip(
+        selected: priorityIndex == index,
+        label: Text(priorityList[index].toString(),
+            style: TextStyle(
+                color: priorityIndex == index ? Colors.white : Colors.black)),
+        backgroundColor: Color(0xffededed),
+        selectedColor: priorityList[index] == 'Urgent'
+            ? Colors.red
+            : (priorityList[index] == 'Medium'
+                ? Colors.yellow[700]
+                : priorityList[index] == 'Low'
+                    ? Colors.green
+                    : Colors.blue),
+        onSelected: (bool selected) {
+          setState(() {
+            if (selected) {
+              priorityIndex = index;
+              savePriority = index;
+              print('index + ${priorityIndex}');
+            }
+          });
+        },
+      ),
+    );
   }
 }

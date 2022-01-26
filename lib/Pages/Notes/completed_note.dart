@@ -65,6 +65,7 @@ class _CompletedNotesState extends State<CompletedNotes> {
                           .push(
                         MaterialPageRoute(
                           builder: (context) => ViewNote(
+                            data['Priority'],
                             data,
                             formattedTime,
                             snapshot.data!.docs[index].reference,

@@ -53,19 +53,15 @@ class _HomePageState extends State<HomePage> {
   List<Color?> myColors = [
     Color(0xff006fc9),
     Colors.deepPurple[200],
-    Color(0xffc90054),
+    Color(0xff2ea8ff),
     Colors.purple[200],
-    Color(0xffb5c900),
-    Colors.red[200],
-    Colors.tealAccent[200],
-    Color(0xffc96100),
-    Colors.pink[200],
+    Color(0xff6a8fab),
+    Color(0xff916736),
     Color(0xff8400d6),
-    Colors.green[200],
-    Colors.cyan[200],
-    Color(0xff00c9a4),
-    Color(0xfff7e300),
-    Colors.teal[200],
+    Color(0xffa19664),
+    Color(0xff577550),
+    Color(0xff923c96),
+    Color(0xff484666),
   ];
 
   @override
@@ -683,7 +679,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   Random random = new Random();
-                  Color bg = myColors[random.nextInt(6)]!;
+                  Color bg = myColors[random.nextInt(10)]!;
                   Map data = snapshot.data!.docs[index].data() as Map;
                   DateTime mydateTime = data['created'].toDate();
                   String formattedTime =
@@ -698,6 +694,7 @@ class _HomePageState extends State<HomePage> {
                           .push(
                         MaterialPageRoute(
                           builder: (context) => ViewNote(
+                            data['Priority'],
                             data,
                             formattedTime,
                             snapshot.data!.docs[index].reference,
@@ -720,9 +717,9 @@ class _HomePageState extends State<HomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${data['title']}",
+                                  "${data['title']}".toUpperCase(),
                                   style: TextStyle(
-                                    fontSize: 24.0,
+                                    fontSize: 20.0,
                                     fontFamily: "lato",
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
@@ -733,10 +730,9 @@ class _HomePageState extends State<HomePage> {
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 4,
                                   style: TextStyle(
-                                    fontSize: 17.0,
+                                    fontSize: 14.0,
                                     fontFamily: "lato",
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey[350],
+                                    color: Colors.white,
                                   ),
                                 ),
                                 //
@@ -745,6 +741,22 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
+                      data['Priority'] != null
+                          ? Positioned(
+                              top: 12,
+                              right: 12,
+                              child: Container(
+                                height: 12,
+                                width: 12,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: data['Priority'] == 2
+                                        ? Colors.red
+                                        : (data['Priority'] == 1
+                                            ? Colors.yellow[700]
+                                            : Colors.green)),
+                              ))
+                          : Container(),
                       Positioned(
                         bottom: 5,
                         right: 30,
@@ -752,9 +764,9 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             formattedTime,
                             style: TextStyle(
-                              fontSize: 15.0,
+                              fontSize: 14.0,
                               fontFamily: "lato",
-                              color: Colors.grey[350],
+                              color: Colors.white,
                             ),
                           ),
                         ),

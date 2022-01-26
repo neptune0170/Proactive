@@ -10,6 +10,12 @@ class AddNote extends StatefulWidget {
 class _AddNoteState extends State<AddNote> {
   String? title;
   String? des;
+  int priorityIndex = 0;
+  final List<String> priorityList = <String>[
+    "Low",
+    "Medium",
+    "Urgent",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +84,33 @@ class _AddNoteState extends State<AddNote> {
                 Form(
                   child: Column(
                     children: [
+                      Row(
+                        children: [
+                          const Text(
+                            'Priority :',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Lato',
+                                fontSize: 21),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            height: 38,
+                            width: 300,
+                            child: ListView.builder(
+                              itemCount: priorityList.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return priorityChip(context, index);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+
                       TextFormField(
                         decoration: InputDecoration.collapsed(
                           hintText: "Title",
@@ -131,7 +164,8 @@ class _AddNoteState extends State<AddNote> {
       'title': title,
       'description': des,
       'created': DateTime.now(),
-      'Completed': false
+      'Completed': false,
+      'Priority': priorityIndex,
     };
 
     ref.add(data);
@@ -140,5 +174,33 @@ class _AddNoteState extends State<AddNote> {
     Navigator.pop(context);
 
     Navigator.pop(context);
+  }
+
+  Widget priorityChip(BuildContext context, int index) {
+    return Padding(
+      padding: EdgeInsets.only(right: 10),
+      child: ChoiceChip(
+        selected: priorityIndex == index,
+        label: Text(priorityList[index].toString(),
+            style: TextStyle(
+                color: priorityIndex == index ? Colors.white : Colors.black)),
+        backgroundColor: Color(0xffededed),
+        selectedColor: priorityList[index] == 'Urgent'
+            ? Colors.red
+            : (priorityList[index] == 'Medium'
+                ? Colors.yellow[700]
+                : priorityList[index] == 'Low'
+                    ? Colors.green
+                    : Colors.blue),
+        onSelected: (bool selected) {
+          setState(() {
+            if (selected) {
+              priorityIndex = index;
+              print('index + ${priorityIndex}');
+            }
+          });
+        },
+      ),
+    );
   }
 }
