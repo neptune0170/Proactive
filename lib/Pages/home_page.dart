@@ -77,6 +77,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -322,6 +323,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+//Streaks widgets  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   Widget StreaksWidget() {
     return Container(
       height: 200,
@@ -454,19 +456,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // updateStreakInFirebase(
-  //   BuildContext context,
-  //   DocumentReference ref,
-  // ) async {
-  //   await ref.update(
-  //     {
-  //       'current_streak': 1,
-  //       // 'last_streak_date': DateFormat("dd-MM-yyyy").format(DateTime.now())
-  //     },
-  //   );
-  //   Navigator.of(context).pop();
-  // }
-
+//Pdf Files widgets  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   Widget PdfFilesWidget() {
     return Container(
       height: 200,
@@ -581,6 +571,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+//Image widgets  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   Widget ImageWidget() {
     return Container(
       height: 200,
@@ -668,6 +659,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  //NOTES widgets  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   Widget notesWidget() {
     return Container(
       height: 200,

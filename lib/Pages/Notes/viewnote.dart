@@ -16,7 +16,7 @@ class _ViewNoteState extends State<ViewNote> {
   String? title;
   String? des;
 
-  bool edit = false;
+  bool edit = true;
   GlobalKey<FormState> key = GlobalKey<FormState>();
 
   @override
@@ -25,17 +25,17 @@ class _ViewNoteState extends State<ViewNote> {
     des = widget.data['description'];
     return SafeArea(
       child: Scaffold(
-        //
-        floatingActionButton: edit
-            ? FloatingActionButton(
-                onPressed: save,
-                child: Icon(
-                  Icons.save_rounded,
-                  color: Colors.white,
-                ),
-                backgroundColor: Colors.grey[700],
-              )
-            : null,
+//Save textButton
+        // floatingActionButton: edit
+        //     ? FloatingActionButton(
+        //         onPressed: save,
+        //         child: Icon(
+        //           Icons.save_rounded,
+        //           color: Colors.white,
+        //         ),
+        //         backgroundColor: Colors.grey[700],
+        //       )
+        //     : null,
         //
         resizeToAvoidBottomInset: false,
         //
@@ -51,6 +51,7 @@ class _ViewNoteState extends State<ViewNote> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
+                        save();
                         Navigator.of(context).pop();
                       },
                       child: Icon(
@@ -72,28 +73,29 @@ class _ViewNoteState extends State<ViewNote> {
                     //
                     Row(
                       children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              edit = !edit;
-                            });
-                          },
-                          child: Icon(
-                            Icons.edit,
-                            size: 24.0,
-                          ),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                              Colors.grey[700],
-                            ),
-                            padding: MaterialStateProperty.all(
-                              EdgeInsets.symmetric(
-                                horizontal: 15.0,
-                                vertical: 8.0,
-                              ),
-                            ),
-                          ),
-                        ),
+                        //#Edit Button Hide
+                        // ElevatedButton(
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       edit = !edit;
+                        //     });
+                        //   },
+                        //   child: Icon(
+                        //     Icons.edit,
+                        //     size: 24.0,
+                        //   ),
+                        //   style: ButtonStyle(
+                        //     backgroundColor: MaterialStateProperty.all(
+                        //       Colors.grey[700],
+                        //     ),
+                        //     padding: MaterialStateProperty.all(
+                        //       EdgeInsets.symmetric(
+                        //         horizontal: 15.0,
+                        //         vertical: 8.0,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         //
                         SizedBox(
                           width: 8.0,
