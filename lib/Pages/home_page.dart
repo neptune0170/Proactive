@@ -661,7 +661,12 @@ class _HomePageState extends State<HomePage> {
       height: 200,
       width: MediaQuery.of(context).size.width,
       child: FutureBuilder<QuerySnapshot>(
-        future: notesref.where('Completed', isEqualTo: false).get(),
+        future: notesref
+            .where(
+              'Completed',
+              isEqualTo: false,
+            )
+            .get(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data!.docs.length == 0) {
