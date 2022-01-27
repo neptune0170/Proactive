@@ -41,6 +41,12 @@ class SideMenu extends StatelessWidget {
               title: 'Calendar',
               onTap: () {},
             ),
+            _SideMenuIconTab(
+              iconData: Icons.error_outline,
+              color: Colors.green,
+              title: 'What\'s New',
+              onTap: () {},
+            ),
             const SizedBox(height: 12.0),
           ],
         )
@@ -75,19 +81,21 @@ class _SideMenuIconTab extends StatelessWidget {
   final IconData iconData;
   final String title;
   final VoidCallback onTap;
-
-  const _SideMenuIconTab({
-    Key? key,
-    required this.iconData,
-    required this.title,
-    required this.onTap,
-  }) : super(key: key);
+  final Color? color;
+  const _SideMenuIconTab(
+      {Key? key,
+      required this.iconData,
+      required this.title,
+      required this.onTap,
+      this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(
         iconData,
+        color: color == null ? Colors.white : color,
         // color: Theme.of(context).iconTheme.color,
         size: 28.0,
       ),
