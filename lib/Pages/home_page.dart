@@ -19,6 +19,7 @@ import 'package:notesapp/Pages/Notes/completed_note.dart';
 import 'package:notesapp/Pages/Notes/viewnote.dart';
 import 'package:notesapp/Pages/Streak/add_streak_page.dart';
 import 'package:notesapp/Pages/login_page.dart';
+import 'package:notesapp/Pages/sideMenu/side_menu.dart';
 import 'package:notesapp/Provider/timeleft.info.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -106,61 +107,68 @@ class _HomePageState extends State<HomePage> {
                   ))),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Row(
+        children: [
+          if (MediaQuery.of(context).size.width > 800) SideMenu(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
-                  fileTypeWidget(
-                    text1: 'Notes',
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        fileTypeWidget(
+                          text1: 'Notes',
+                        ),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .push(
+                                MaterialPageRoute(
+                                  builder: (context) => CompletedNotes(),
+                                ),
+                              )
+                                  .then((value) {
+                                setState(() {});
+                              });
+                            },
+                            child: Text(
+                              'Completed Notes',
+                              style: TextStyle(color: Colors.blue),
+                            ))
+                      ],
+                    ),
                   ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .push(
-                          MaterialPageRoute(
-                            builder: (context) => CompletedNotes(),
-                          ),
-                        )
-                            .then((value) {
-                          setState(() {});
-                        });
-                      },
-                      child: Text(
-                        'Completed Notes',
-                        style: TextStyle(color: Colors.blue),
-                      ))
+                  //Notes Widget
+                  notesWidget(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: fileTypeWidget(
+                      text1: 'Streaks',
+                    ),
+                  ),
+                  StreaksWidget(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: fileTypeWidget(
+                      text1: 'Images',
+                    ),
+                  ),
+                  ImageWidget(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: fileTypeWidget(
+                      text1: 'PDF/FILES',
+                    ),
+                  ),
+                  PdfFilesWidget(),
                 ],
               ),
             ),
-            //Notes Widget
-            notesWidget(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: fileTypeWidget(
-                text1: 'Streaks',
-              ),
-            ),
-            StreaksWidget(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: fileTypeWidget(
-                text1: 'Images',
-              ),
-            ),
-            ImageWidget(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: fileTypeWidget(
-                text1: 'PDF/FILES',
-              ),
-            ),
-            PdfFilesWidget(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
