@@ -5,7 +5,6 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -351,6 +350,8 @@ class _HomePageState extends State<HomePage> {
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   Map data = snapshot.data!.docs[index].data() as Map;
+                  checkStreak(
+                      context, snapshot.data!.docs[index].reference, data);
 
                   return InkWell(
                     onLongPress: () async {
@@ -419,31 +420,49 @@ class _HomePageState extends State<HomePage> {
                                       height: 20,
                                     ),
                                     Center(
-                                      child: data['streak_last_update_date'] !=
+                                      child: data['streak_allowed'] !=
                                               DateFormat("dd-MM-yyyy")
                                                   .format(DateTime.now())
                                                   .toString()
-                                          ? ElevatedButton(
-                                              onPressed: () {
-                                                snapshot
-                                                    .data!.docs[index].reference
-                                                    .update({
-                                                  'current_streak':
-                                                      data['current_streak'] +
+                                          ? data['streak_last_update_date'] !=
+                                                  DateFormat("dd-MM-yyyy")
+                                                      .format(DateTime.now())
+                                                      .toString()
+                                              ? ElevatedButton(
+                                                  onPressed: () {
+                                                    snapshot.data!.docs[index]
+                                                        .reference
+                                                        .update({
+                                                      'current_streak': data[
+                                                              'current_streak'] +
                                                           1,
-                                                  'streak_last_update_date':
-                                                      DateFormat("dd-MM-yyyy")
-                                                          .format(
-                                                              DateTime.now())
-                                                });
-                                                setState(() {});
-                                              },
-                                              child: Text('+1'))
-                                          : Text(
-                                              'Today\'s Task Completed',
-                                              style: TextStyle(
-                                                  color: Colors.green),
-                                            ),
+                                                      'streak_last_update_date':
+                                                          DateFormat(
+                                                                  "dd-MM-yyyy")
+                                                              .format(DateTime
+                                                                  .now()),
+                                                      'streak_allowed':
+                                                          DateFormat(
+                                                                  "dd-MM-yyyy")
+                                                              .format(DateTime
+                                                                      .now()
+                                                                  .add(Duration(
+                                                                      days:
+                                                                          2))),
+                                                    });
+                                                    setState(() {});
+                                                  },
+                                                  child: Text('+1'))
+                                              : Text(
+                                                  'Today\'s Task Completed',
+                                                  style: TextStyle(
+                                                      color: Colors.green),
+                                                )
+                                          : (Text(
+                                              'Stopped',
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            )),
                                     )
                                   ])),
                         ),
@@ -458,6 +477,15 @@ class _HomePageState extends State<HomePage> {
         },
       ),
     );
+  }
+
+  void checkStreak(
+      BuildContext context, DocumentReference<Object?> ref, Map data) {
+    var userData = {'current_streak': 0};
+    data['streak_allowed'] ==
+            DateFormat("dd-MM-yyyy").format(DateTime.now()).toString()
+        ? (ref.update(userData))
+        : null;
   }
 
 //Pdf Files widgets  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
