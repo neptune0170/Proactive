@@ -6,7 +6,7 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: double.infinity,
-        width: 220.0,
+        width: 240.0,
         color: Colors.black,
         child: Column(
           children: [
@@ -39,6 +39,16 @@ class SideMenu extends StatelessWidget {
             _SideMenuIconTab(
               iconData: Icons.calendar_today_rounded,
               title: 'Calendar',
+              onTap: () {},
+            ),
+            _SideMenuIconTab(
+              iconData: Icons.local_post_office_outlined,
+              title: 'Files Vauld',
+              onTap: () {},
+            ),
+            _SideMenuIconTab(
+              iconData: Icons.group_add,
+              title: 'Group Project',
               onTap: () {},
             ),
             _SideMenuIconTab(
