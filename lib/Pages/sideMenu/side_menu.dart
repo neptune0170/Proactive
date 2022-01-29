@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notesapp/Pages/home_page.dart';
+import 'package:notesapp/Pages/whatsnew/whatsnew.dart';
 
 class SideMenu extends StatelessWidget {
   @override
@@ -55,7 +56,10 @@ class SideMenu extends StatelessWidget {
               iconData: Icons.error_outline,
               color: Colors.green,
               title: 'What\'s New',
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => WhatsNew()));
+              },
             ),
             const SizedBox(height: 12.0),
           ],
