@@ -6,31 +6,39 @@ import 'package:flutter/material.dart';
 import 'package:notesapp/Pages/home_page.dart';
 import 'package:notesapp/Pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:notesapp/Pages/splash_page.dart';
 import 'package:notesapp/Provider/timeleft.info.dart';
 import 'package:notesapp/utils/user_simple_preferences.dart';
 import 'package:provider/provider.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
 
   // print(osVersion);
-  await Firebase.initializeApp(
-      options: FirebaseOptions(
-    apiKey: "AIzaSyAIyZxxowQ5ZoYwN0JWQq-8IhPeuQGtQ7k",
-    appId: "1:397151227980:web:bb1f1bce06099b7364e4e9",
-    storageBucket: "notesapp-6268f.appspot.com",
-    messagingSenderId: "397151227980",
-    projectId: "notesapp-6268f",
-  ));
+  // await Firebase.initializeApp(
+  //     options: FirebaseOptions(
+  //   apiKey: "AIzaSyAIyZxxowQ5ZoYwN0JWQq-8IhPeuQGtQ7k",
+  //   appId: "1:397151227980:web:bb1f1bce06099b7364e4e9",
+  //   storageBucket: "notesapp-6268f.appspot.com",
+  //   messagingSenderId: "397151227980",
+  //   projectId: "notesapp-6268f",
+  // ));
 
   //firebase(mobile)
   // await Firebase.initializeApp();
 
-  await UserSimplePreferences.init();
+  // await UserSimplePreferences.init();
 
   // runApp(MyApp());
-  runApp(
-      ChangeNotifierProvider(create: (context) => TimerInfo(), child: MyApp()));
+  runApp(SplashPage(
+      key: UniqueKey(),
+      onInitializationComplete: () {
+        runApp(ChangeNotifierProvider(
+            create: (context) => TimerInfo(), child: MyApp()));
+      }));
+
+  // runApp(
+  //     ChangeNotifierProvider(create: (context) => TimerInfo(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
