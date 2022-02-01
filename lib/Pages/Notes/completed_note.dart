@@ -92,7 +92,6 @@ class _CompletedNotesState extends State<CompletedNotes> {
                                   style: TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     fontSize: 24.0,
-                                    fontFamily: "lato",
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
@@ -104,7 +103,6 @@ class _CompletedNotesState extends State<CompletedNotes> {
                                   style: TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     fontSize: 15.0,
-                                    fontFamily: "lato",
                                     fontWeight: FontWeight.bold,
                                     color: Colors.grey[350],
                                   ),
@@ -124,7 +122,6 @@ class _CompletedNotesState extends State<CompletedNotes> {
                             formattedTime,
                             style: TextStyle(
                               fontSize: 15.0,
-                              fontFamily: "lato",
                               color: Colors.grey[350],
                             ),
                           ),

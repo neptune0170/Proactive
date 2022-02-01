@@ -159,7 +159,7 @@ class _ViewNoteState extends State<ViewNote> {
                             'Priority :',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'Lato',
+                                color: Colors.white,
                                 fontSize: 21),
                           ),
                           SizedBox(

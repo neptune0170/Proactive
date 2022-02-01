@@ -77,6 +77,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff03fcba),
         child: const Icon(Icons.add),
         onPressed: () {
           modalBottomSheetMenu(context);
@@ -365,7 +366,7 @@ class _HomePageState extends State<HomePage> {
                         child: Card(
                           color: Colors.white,
                           child: Padding(
-                              padding: const EdgeInsets.all(15.0),
+                              padding: const EdgeInsets.all(10.0),
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -379,10 +380,9 @@ class _HomePageState extends State<HomePage> {
                                           width: 10,
                                         ),
                                         Container(
-                                          width: 120,
+                                          width: 130,
                                           child: Text('${data['title']}',
                                               style: TextStyle(
-                                                  fontFamily: 'lato',
                                                   color: Colors.black),
                                               overflow: TextOverflow.ellipsis),
                                         ),
@@ -530,6 +530,7 @@ class _HomePageState extends State<HomePage> {
                       height: 200,
                       width: 200,
                       child: Card(
+                        color: Colors.grey[850],
                         child: Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: Stack(
@@ -542,20 +543,18 @@ class _HomePageState extends State<HomePage> {
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       fontSize: 21,
-                                      fontFamily: 'lato',
                                       color: Colors.blue,
                                     ),
                                   )),
                                 ),
                                 Positioned(
                                   bottom: 5,
-                                  right: 20,
+                                  right: 10,
                                   child: Text(
                                     formattedTime,
                                     style: TextStyle(
                                       color: Color(0xff757575),
                                       fontWeight: FontWeight.w700,
-                                      fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
                                       fontSize: 15.0,
                                     ),
@@ -657,7 +656,6 @@ class _HomePageState extends State<HomePage> {
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       fontSize: 21,
-                                      fontFamily: 'lato',
                                       color: Colors.blue,
                                     ),
                                   )),
@@ -670,7 +668,6 @@ class _HomePageState extends State<HomePage> {
                                     style: TextStyle(
                                       color: Color(0xff757575),
                                       fontWeight: FontWeight.w700,
-                                      fontFamily: "Roboto",
                                       fontStyle: FontStyle.normal,
                                       fontSize: 15.0,
                                     ),
@@ -763,7 +760,6 @@ class _HomePageState extends State<HomePage> {
                                       : '',
                                   style: TextStyle(
                                     fontSize: 20.0,
-                                    fontFamily: "lato",
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
@@ -779,7 +775,6 @@ class _HomePageState extends State<HomePage> {
                                   maxLines: 7,
                                   style: TextStyle(
                                     fontSize: 14.0,
-                                    fontFamily: "lato",
                                     color: Colors.white,
                                   ),
                                 ),
@@ -813,7 +808,6 @@ class _HomePageState extends State<HomePage> {
                             formattedTime,
                             style: TextStyle(
                               fontSize: 14.0,
-                              fontFamily: "lato",
                               color: Colors.white,
                             ),
                           ),
@@ -918,10 +912,10 @@ class fileTypeWidget extends StatelessWidget {
         child: Text(
           text1!,
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 35,
-              fontFamily: 'lato'),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 35,
+          ),
         ),
       ),
     );

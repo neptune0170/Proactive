@@ -49,11 +49,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Notes App',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark().copyWith(
-          primaryColor: Colors.white,
-          accentColor: Colors.white,
-          scaffoldBackgroundColor: Color(0xff070706),
-        ),
+        theme: ThemeData(
+            fontFamily: 'Montserrat',
+            primaryColor: Colors.white,
+            accentColor: Colors.white,
+            scaffoldBackgroundColor: Color(0xff070706),
+            inputDecorationTheme: const InputDecorationTheme(
+              hintStyle: TextStyle(color: Colors.grey),
+            )),
         home: user == null ? LoginPage() : HomePage()
         // ChangeNotifierProvider(
         //     create: (context) => TimerInfo(), child: HomePage())

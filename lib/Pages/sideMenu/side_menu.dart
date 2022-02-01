@@ -115,7 +115,7 @@ class _SideMenuIconTab extends StatelessWidget {
       ),
       title: Text(
         title,
-        // style: Theme.of(context).textTheme.bodyText1,
+        style: TextStyle(color: Colors.white),
         overflow: TextOverflow.ellipsis,
       ),
       onTap: onTap,

@@ -92,7 +92,7 @@ class _AddNoteState extends State<AddNote> {
                             'Priority :',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'Lato',
+                                color: Color(0xffffffff),
                                 fontSize: 21),
                           ),
                           SizedBox(

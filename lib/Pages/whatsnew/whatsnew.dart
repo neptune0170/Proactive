@@ -83,9 +83,9 @@ class _WhatsNewState extends State<WhatsNew> {
                               child: Text(
                                 Date,
                                 style: TextStyle(
-                                    fontFamily: 'Lato',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 24),
+                                    fontSize: 24,
+                                    color: Colors.white),
                               ),
                             ),
                             SizedBox(
@@ -94,9 +94,10 @@ class _WhatsNewState extends State<WhatsNew> {
                             Container(
                               child: Text(data['title'],
                                   style: TextStyle(
-                                      fontFamily: 'Lato',
+
                                       // fontWeight: FontWeight.bold,
-                                      fontSize: 16)),
+                                      fontSize: 16,
+                                      color: Colors.white)),
                             ),
                             SizedBox(
                               height: 10,
