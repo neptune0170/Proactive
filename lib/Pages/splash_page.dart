@@ -60,6 +60,7 @@ class _SplashPageState extends State<SplashPage> {
                 child: Text(
               'Setuping your App...',
               style: TextStyle(
+                fontFamily: 'Montserrat',
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 21,
