@@ -107,68 +107,71 @@ class _HomePageState extends State<HomePage> {
                   ))),
         ],
       ),
-      body: Row(
-        children: [
-          if (MediaQuery.of(context).size.width > 800) SideMenu(),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        fileTypeWidget(
-                          text1: 'Notes',
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .push(
-                                MaterialPageRoute(
-                                  builder: (context) => CompletedNotes(),
-                                ),
-                              )
-                                  .then((value) {
-                                setState(() {});
-                              });
-                            },
-                            child: Text(
-                              'Completed Notes',
-                              style: TextStyle(color: Colors.blue),
-                            ))
-                      ],
+      body: Container(
+        color: Colors.black,
+        child: Row(
+          children: [
+            if (MediaQuery.of(context).size.width > 800) SideMenu(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          fileTypeWidget(
+                            text1: 'Notes',
+                          ),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .push(
+                                  MaterialPageRoute(
+                                    builder: (context) => CompletedNotes(),
+                                  ),
+                                )
+                                    .then((value) {
+                                  setState(() {});
+                                });
+                              },
+                              child: Text(
+                                'Completed Notes',
+                                style: TextStyle(color: Colors.blue),
+                              ))
+                        ],
+                      ),
                     ),
-                  ),
-                  //Notes Widget
-                  notesWidget(),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: fileTypeWidget(
-                      text1: 'Streaks',
+                    //Notes Widget
+                    notesWidget(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: fileTypeWidget(
+                        text1: 'Streaks',
+                      ),
                     ),
-                  ),
-                  StreaksWidget(),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: fileTypeWidget(
-                      text1: 'Images',
+                    StreaksWidget(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: fileTypeWidget(
+                        text1: 'Images',
+                      ),
                     ),
-                  ),
-                  ImageWidget(),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: fileTypeWidget(
-                      text1: 'PDF/FILES',
+                    ImageWidget(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: fileTypeWidget(
+                        text1: 'PDF/FILES',
+                      ),
                     ),
-                  ),
-                  PdfFilesWidget(),
-                ],
+                    PdfFilesWidget(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
