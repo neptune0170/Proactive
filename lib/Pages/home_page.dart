@@ -758,7 +758,9 @@ class _HomePageState extends State<HomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${data['title']}".toUpperCase(),
+                                  data['title'] != null
+                                      ? "${data['title']}".toUpperCase()
+                                      : '',
                                   style: TextStyle(
                                     fontSize: 20.0,
                                     fontFamily: "lato",
@@ -766,10 +768,15 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.white,
                                   ),
                                 ),
+                                SizedBox(
+                                  height: 10,
+                                ),
                                 Text(
-                                  "${data['description']}",
+                                  data['description'] != null
+                                      ? "${data['description']}"
+                                      : '',
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines: 4,
+                                  maxLines: 7,
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     fontFamily: "lato",

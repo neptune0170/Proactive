@@ -53,27 +53,29 @@ class _AddNoteState extends State<AddNote> {
                       ),
                     ),
                     //
-                    ElevatedButton(
-                      onPressed: add,
-                      child: Text(
-                        "Save",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                          Colors.grey[700],
-                        ),
-                        padding: MaterialStateProperty.all(
-                          EdgeInsets.symmetric(
-                            horizontal: 25.0,
-                            vertical: 8.0,
-                          ),
-                        ),
-                      ),
-                    ),
+                    title != null
+                        ? ElevatedButton(
+                            onPressed: add,
+                            child: Text(
+                              "Save",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                Colors.grey[700],
+                              ),
+                              padding: MaterialStateProperty.all(
+                                EdgeInsets.symmetric(
+                                  horizontal: 25.0,
+                                  vertical: 8.0,
+                                ),
+                              ),
+                            ),
+                          )
+                        : Container(),
                   ],
                 ),
                 //
@@ -121,7 +123,9 @@ class _AddNoteState extends State<AddNote> {
                           color: Colors.grey,
                         ),
                         onChanged: (_val) {
-                          title = _val;
+                          setState(() {
+                            title = _val;
+                          });
                         },
                       ),
                       //
