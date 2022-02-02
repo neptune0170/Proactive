@@ -58,7 +58,7 @@ class _SplashPageState extends State<SplashPage> {
             ),
             Center(
                 child: Text(
-              'Setuping your App...',
+              '',
               style: TextStyle(
                 fontFamily: 'Montserrat',
                 color: Colors.white,
@@ -67,13 +67,8 @@ class _SplashPageState extends State<SplashPage> {
               ),
             )),
             SizedBox(
-              height: 10,
+              height: 25,
             ),
-            Center(
-              child: CircularProgressIndicator(
-                color: Colors.cyan,
-              ),
-            )
           ],
         ),
       ),
