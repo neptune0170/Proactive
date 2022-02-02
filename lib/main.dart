@@ -3,6 +3,8 @@ import 'dart:io' show Platform;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:notesapp/Pages/auth_login_page.dart';
 import 'package:notesapp/Pages/home_page.dart';
 import 'package:notesapp/Pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -42,11 +44,12 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final authController = AuthController();
   MyApp({Key? key}) : super(key: key);
   final User? user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         title: 'Notes App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -57,10 +60,41 @@ class MyApp extends StatelessWidget {
             inputDecorationTheme: const InputDecorationTheme(
               hintStyle: TextStyle(color: Colors.grey),
             )),
-        home: user == null ? LoginPage() : HomePage()
+        home: FutureBuilder(
+          future: authController.tryAutoLogin(),
+          builder: (context, authResult) {
+            if (authResult.connectionState == ConnectionState.waiting) {
+              return AuthLoading();
+            } else {
+              if (authResult.data == true) {
+                return HomePage();
+              } else {
+                return LoginPage();
+              }
+            }
+          },
+        )
+
+        // user == null ? LoginPage() : HomePage()
         // ChangeNotifierProvider(
         //     create: (context) => TimerInfo(), child: HomePage())
         );
+
+    //  MaterialApp(
+    //     title: 'Notes App',
+    //     debugShowCheckedModeBanner: false,
+    //     theme: ThemeData(
+    //         fontFamily: 'Montserrat',
+    //         primaryColor: Colors.white,
+    //         accentColor: Colors.white,
+    //         scaffoldBackgroundColor: Color(0xff070706),
+    //         inputDecorationTheme: const InputDecorationTheme(
+    //           hintStyle: TextStyle(color: Colors.grey),
+    //         )),
+    //     home: user == null ? LoginPage() : HomePage()
+    //     // ChangeNotifierProvider(
+    //     //     create: (context) => TimerInfo(), child: HomePage())
+    //     );
   }
 }
 //https://www.youtube.com/watch?v=oJ5Vrya3wCQ&t=1s

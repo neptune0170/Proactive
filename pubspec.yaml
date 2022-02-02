@@ -44,6 +44,7 @@ dependencies:
   shared_preferences: ^2.0.12
   provider: any
   desktop_window: ^0.4.0
+  get: ^4.6.1
 
 dev_dependencies:
   flutter_test:

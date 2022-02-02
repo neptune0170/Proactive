@@ -20,6 +20,7 @@ import 'package:notesapp/Pages/Streak/add_streak_page.dart';
 import 'package:notesapp/Pages/login_page.dart';
 import 'package:notesapp/Pages/sideMenu/side_menu.dart';
 import 'package:notesapp/Provider/timeleft.info.dart';
+import 'package:notesapp/utils/user_simple_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -936,6 +937,8 @@ showAlertDialog(BuildContext context) {
   Widget continueButton = TextButton(
     child: Text("Yes"),
     onPressed: () {
+      UserSimplePreferences.setEmail('');
+      UserSimplePreferences.setPassword('');
       Navigator.of(context).pop();
       FirebaseAuth.instance.signOut();
       Navigator.of(context).pushReplacement(
