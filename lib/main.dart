@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:io' show Platform;
 
 import 'package:cloud_firestore/cloud_firestore.dart';

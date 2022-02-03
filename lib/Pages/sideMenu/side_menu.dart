@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notesapp/Pages/home_page.dart';
 import 'package:notesapp/Pages/whatsnew/whatsnew.dart';
+import 'package:provider/provider.dart';
 
 class SideMenu extends StatelessWidget {
   @override
@@ -32,10 +33,7 @@ class SideMenu extends StatelessWidget {
             _SideMenuIconTab(
               iconData: Icons.home,
               title: 'Home',
-              onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
-              },
+              onTap: () {},
             ),
             _SideMenuIconTab(
               iconData: Icons.calendar_today_rounded,
@@ -60,6 +58,11 @@ class SideMenu extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => WhatsNew()));
               },
+            ),
+            _SideMenuIconTab(
+              iconData: Icons.group_rounded,
+              title: 'Contributions',
+              onTap: () {},
             ),
             const SizedBox(height: 12.0),
           ],

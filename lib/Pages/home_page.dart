@@ -64,15 +64,31 @@ class _HomePageState extends State<HomePage> {
     Color(0xff923c96),
     Color(0xff484666),
   ];
-
+  Timer? timer;
   @override
   void initState() {
-    Timer.periodic(Duration(seconds: 1), (t) {
+    timer = Timer.periodic(Duration(seconds: 1), (t) {
       var timerInfo = Provider.of<TimerInfo>(context, listen: false);
       timerInfo.updateRemainingTime();
     });
     super.initState();
+    print('3');
   }
+
+  void dispose() {
+    // TODO: implement dispose
+    timer?.cancel();
+
+    Provider.of<TimerInfo>(context, listen: false).dispose();
+
+    super.dispose();
+  }
+  // void dispose() {
+  //   // TODO: implement dispose
+
+  //   super.dispose();
+  //   print('DISPOSE');
+  // }
 
   @override
   Widget build(BuildContext context) {

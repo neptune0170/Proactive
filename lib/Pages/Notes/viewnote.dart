@@ -36,6 +36,13 @@ class _ViewNoteState extends State<ViewNote> {
   _ViewNoteState(this.priorityIndex, this.data, this.time, this.ref);
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    print('tesxt');
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     title = widget.data['title'];
     des = widget.data['description'];
