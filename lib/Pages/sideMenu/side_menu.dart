@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/Pages/GroupProject/group_project_home.dart';
 import 'package:notesapp/Pages/home_page.dart';
 import 'package:notesapp/Pages/whatsnew/whatsnew.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +49,10 @@ class SideMenu extends StatelessWidget {
             _SideMenuIconTab(
               iconData: Icons.group_add,
               title: 'Group Project',
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => GroupProject()));
+              },
             ),
             _SideMenuIconTab(
               iconData: Icons.error_outline,
@@ -62,6 +66,11 @@ class SideMenu extends StatelessWidget {
             _SideMenuIconTab(
               iconData: Icons.group_rounded,
               title: 'Contributions',
+              onTap: () {},
+            ),
+            _SideMenuIconTab(
+              iconData: Icons.payment,
+              title: 'Buy me a COFFEE',
               onTap: () {},
             ),
             const SizedBox(height: 12.0),
