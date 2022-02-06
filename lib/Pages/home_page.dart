@@ -664,6 +664,7 @@ class _HomePageState extends State<HomePage> {
                       height: 200,
                       width: 200,
                       child: Card(
+                        color: Colors.grey[850],
                         child: Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: Stack(
