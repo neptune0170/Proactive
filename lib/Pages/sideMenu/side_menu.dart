@@ -8,98 +8,136 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: double.infinity,
-        width: 240.0,
-        color: Colors.black,
+      height: double.infinity,
+      width: 240.0,
+      color: Colors.black,
+      child: Container(
+        // color: Colors.red,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Image.asset(
-                    'assets/Images/NotesApp.png',
-                    height: 55.0,
-                    filterQuality: FilterQuality.high,
+            Container(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 10,
                   ),
-                ),
-              ],
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            right: 16.0, left: 16, bottom: 16),
+                        child: Image.asset(
+                          'assets/Images/proactive_logo.png',
+                          height: 78.0,
+                          filterQuality: FilterQuality.high,
+                        ),
+                      ),
+                    ],
+                  ),
+                  _SideMenuIconTab(
+                    iconData: Icons.home,
+                    title: 'Home',
+                    onTap: () {},
+                  ),
+                  _SideMenuIconTab(
+                    iconData: Icons.calendar_today_rounded,
+                    title: 'Calendar',
+                    onTap: () {},
+                  ),
+                  _SideMenuIconTab(
+                    iconData: Icons.local_post_office_outlined,
+                    title: 'Files Vauld',
+                    onTap: () {},
+                  ),
+                  _SideMenuIconTab(
+                    iconData: Icons.group_add,
+                    title: 'Group Project',
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => GroupProject()));
+                    },
+                  ),
+                  _SideMenuIconTab(
+                    iconData: Icons.error_outline,
+                    color: Colors.green,
+                    title: 'What\'s New',
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => WhatsNew()));
+                    },
+                  ),
+                  _SideMenuIconTab(
+                    iconData: Icons.group_rounded,
+                    title: 'Contributions',
+                    onTap: () {},
+                  ),
+                  _SideMenuIconTab(
+                    iconData: Icons.payment,
+                    title: 'Buy me a COFFEE',
+                    onTap: () {},
+                  ),
+                ],
+              ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            _SideMenuIconTab(
-              iconData: Icons.home,
-              title: 'Home',
-              onTap: () {},
-            ),
-            _SideMenuIconTab(
-              iconData: Icons.calendar_today_rounded,
-              title: 'Calendar',
-              onTap: () {},
-            ),
-            _SideMenuIconTab(
-              iconData: Icons.local_post_office_outlined,
-              title: 'Files Vauld',
-              onTap: () {},
-            ),
-            _SideMenuIconTab(
-              iconData: Icons.group_add,
-              title: 'Group Project',
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => GroupProject()));
-              },
-            ),
-            _SideMenuIconTab(
-              iconData: Icons.error_outline,
-              color: Colors.green,
-              title: 'What\'s New',
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => WhatsNew()));
-              },
-            ),
-            _SideMenuIconTab(
-              iconData: Icons.group_rounded,
-              title: 'Contributions',
-              onTap: () {},
-            ),
-            _SideMenuIconTab(
-              iconData: Icons.payment,
-              title: 'Buy me a COFFEE',
-              onTap: () {},
-            ),
-            const SizedBox(height: 12.0),
-          ],
-        )
-        // Text('HEEL'),
 
-        //     child: Column(
-        //       children: [
-        //         _SideMenuIconTab(
-        //           iconData: Icons.home,
-        //           title: 'Home',
-        //           onTap: () {},
-        //         ),
-        //         _SideMenuIconTab(
-        //           iconData: Icons.search,
-        //           title: 'Search',
-        //           onTap: () {},
-        //         ),
-        //         _SideMenuIconTab(
-        //           iconData: Icons.audiotrack,
-        //           title: 'Radio',
-        //           onTap: () {},
-        //         ),
-        //         const SizedBox(height: 12.0),
-        //         _LibraryPlaylists(),
-        //       ],
-        //     ),
-        );
+            // const SizedBox(height: 190.0),
+            if (MediaQuery.of(context).size.height > 560)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                child: Container(
+                  height: 42,
+                  width: 150,
+                  // color: Colors.blue,
+                  child: Center(
+                      child: Column(
+                    children: [
+                      Text(
+                        '© 2022 - 2023',
+                        style: TextStyle(
+                            color: Colors.grey[800],
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'proactive ltd.',
+                        style: TextStyle(
+                          color: Colors.grey[800],
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  )),
+                ),
+              )
+          ],
+        ),
+      ),
+      // Text('HEEL'),
+
+      //     child: Column(
+      //       children: [
+      //         _SideMenuIconTab(
+      //           iconData: Icons.home,
+      //           title: 'Home',
+      //           onTap: () {},
+      //         ),
+      //         _SideMenuIconTab(
+      //           iconData: Icons.search,
+      //           title: 'Search',
+      //           onTap: () {},
+      //         ),
+      //         _SideMenuIconTab(
+      //           iconData: Icons.audiotrack,
+      //           title: 'Radio',
+      //           onTap: () {},
+      //         ),
+      //         const SizedBox(height: 12.0),
+      //         _LibraryPlaylists(),
+      //       ],
+      //     ),
+    );
   }
 }
 
