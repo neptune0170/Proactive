@@ -39,7 +39,7 @@ class _FileValutState extends State<FileValut> {
       body: Container(
         color: Colors.black,
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
           child: Column(
             children: [
               Padding(
@@ -57,7 +57,7 @@ class _FileValutState extends State<FileValut> {
               ),
               PdfFilesWidget(),
               SizedBox(
-                height: 40,
+                height: 30,
               ),
               uploadArea()
             ],
@@ -73,7 +73,7 @@ class _FileValutState extends State<FileValut> {
         borderRadius: BorderRadius.circular(12),
         color: Colors.blueGrey[900],
       ),
-      height: MediaQuery.of(context).size.height * .25,
+      height: MediaQuery.of(context).size.height * .2,
       width: MediaQuery.of(context).size.width * .7,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -177,7 +177,7 @@ class _FileValutState extends State<FileValut> {
 
   Widget ImageWidget() {
     return Container(
-      height: 200,
+      height: 180,
       width: MediaQuery.of(context).size.width,
       child: FutureBuilder<QuerySnapshot>(
         future: imageref.get(),
@@ -213,8 +213,8 @@ class _FileValutState extends State<FileValut> {
                       }
                     },
                     child: Container(
-                      height: 200,
-                      width: 200,
+                      height: 180,
+                      width: 180,
                       child: Card(
                         color: Colors.grey[850],
                         child: Padding(
@@ -235,7 +235,7 @@ class _FileValutState extends State<FileValut> {
                                 ),
                                 Positioned(
                                   bottom: 5,
-                                  right: 20,
+                                  right: 5,
                                   child: Text(
                                     formattedTime,
                                     style: TextStyle(
@@ -263,7 +263,7 @@ class _FileValutState extends State<FileValut> {
 
   Widget PdfFilesWidget() {
     return Container(
-      height: 200,
+      height: 180,
       width: MediaQuery.of(context).size.width,
       child: FutureBuilder<QuerySnapshot>(
         future: fileref.get(),
@@ -299,8 +299,8 @@ class _FileValutState extends State<FileValut> {
                       }
                     },
                     child: Container(
-                      height: 200,
-                      width: 200,
+                      height: 180,
+                      width: 180,
                       child: Card(
                         color: Colors.grey[850],
                         child: Padding(
@@ -321,7 +321,7 @@ class _FileValutState extends State<FileValut> {
                                 ),
                                 Positioned(
                                   bottom: 5,
-                                  right: 10,
+                                  right: 5,
                                   child: Text(
                                     formattedTime,
                                     style: TextStyle(
