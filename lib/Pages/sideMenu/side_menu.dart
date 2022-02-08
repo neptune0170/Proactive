@@ -105,7 +105,7 @@ class SideMenu extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'proactive ltd.',
+                        'Proactive Inc.',
                         style: TextStyle(
                           color: Colors.grey[800],
                           fontSize: 12,
