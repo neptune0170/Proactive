@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/Pages/FilesVault/file_vault.dart';
 import 'package:notesapp/Pages/GroupProject/group_project_home.dart';
 import 'package:notesapp/Pages/home_page.dart';
 import 'package:notesapp/Pages/whatsnew/whatsnew.dart';
@@ -47,8 +48,11 @@ class SideMenu extends StatelessWidget {
                   ),
                   _SideMenuIconTab(
                     iconData: Icons.local_post_office_outlined,
-                    title: 'Files Vauld',
-                    onTap: () {},
+                    title: 'Files Vault',
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => FileValut()));
+                    },
                   ),
                   _SideMenuIconTab(
                     iconData: Icons.group_add,
