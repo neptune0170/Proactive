@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
+import 'package:notesapp/Pages/GroupProject/ChatApp/ChatPages/chat_page.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/ChatProvider/authentication_provider.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/ChatProvider/chats_page_provider.dart';
+import 'package:notesapp/Pages/GroupProject/ChatApp/Chatservices/navigation_service.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/chatModel/chat.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/chatModel/chat_message.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/chatModel/chat_user.dart';
@@ -20,12 +24,14 @@ class _ChatsPageState extends State<ChatsPage> {
   late double _deviceWidth;
   late AuthenticationProvider _auth;
   late ChatsPageProvider _pageProvider;
+  late NavigationService _navigation;
 
   @override
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
     _auth = Provider.of<AuthenticationProvider>(context);
+    _navigation = GetIt.instance.get<NavigationService>();
     return MultiProvider(providers: [
       ChangeNotifierProvider<ChatsPageProvider>(
         create: (_) => ChatsPageProvider(_auth),
@@ -104,9 +110,13 @@ class _ChatsPageState extends State<ChatsPage> {
       isActive: _isActive,
       isActivity: _chat.activity,
       onTap: () {
-        // _navigation.navigateToPage(
-        //   ChatPage(chat: _chat),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ChatPage(
+                    chat: _chat,
+                  )),
+        );
       },
     );
   }

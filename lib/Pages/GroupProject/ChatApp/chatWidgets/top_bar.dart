@@ -13,7 +13,7 @@ class TopBar extends StatelessWidget {
     this._barTitle, {
     this.primaryAction,
     this.secondaryAction,
-    this.fontSize = 35,
+    this.fontSize = 15,
   });
 
   @override
@@ -25,7 +25,8 @@ class TopBar extends StatelessWidget {
 
   Widget _buildUI() {
     return Container(
-      height: _deviceHeight * 0.10,
+      // color: Colors.red,
+      height: _deviceHeight * 0.05,
       width: _deviceWidth,
       child: Row(
         mainAxisSize: MainAxisSize.max,
