@@ -11,7 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:notesapp/Pages/File/file_cloud_storage.dart';
-import 'package:notesapp/Pages/Images/services/cloud_storage.dart';
+import 'package:notesapp/Pages/GroupProject/ChatApp/Chatservices/cloud_storage.dart';
 
 import 'package:notesapp/Pages/Notes/addnotes.dart';
 import 'package:notesapp/Pages/Notes/completed_note.dart';

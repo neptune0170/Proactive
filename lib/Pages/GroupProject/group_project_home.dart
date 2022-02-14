@@ -2,6 +2,8 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/ChatPages/chat_home.dart';
+import 'package:notesapp/Pages/GroupProject/ChatApp/ChatProvider/authentication_provider.dart';
+import 'package:provider/provider.dart';
 
 class GroupProject extends StatefulWidget {
   const GroupProject({Key? key}) : super(key: key);
@@ -69,15 +71,24 @@ class ChatWidget extends StatefulWidget {
 class _ChatWidgetState extends State<ChatWidget> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            fontFamily: 'Montserrat',
-            backgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
-            scaffoldBackgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
-            bottomNavigationBarTheme: BottomNavigationBarThemeData(
-              backgroundColor: Color.fromRGBO(30, 29, 37, 1.0),
-            )),
-        home: ChatHome());
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthenticationProvider>(
+          create: (BuildContext _context) {
+            return AuthenticationProvider();
+          },
+        )
+      ],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+              fontFamily: 'Montserrat',
+              backgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
+              scaffoldBackgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
+              bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                backgroundColor: Color.fromRGBO(30, 29, 37, 1.0),
+              )),
+          home: ChatHome()),
+    );
   }
 }

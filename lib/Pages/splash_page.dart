@@ -1,6 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:notesapp/Pages/GroupProject/ChatApp/Chatservices/cloud_storage.dart';
+import 'package:notesapp/Pages/GroupProject/ChatApp/Chatservices/media_service.dart';
+import 'package:notesapp/Pages/GroupProject/ChatApp/Chatservices/navigation_service.dart';
 import 'package:notesapp/utils/user_simple_preferences.dart';
+import 'package:get_it/get_it.dart';
+import 'GroupProject/ChatApp/Chatservices/database_service.dart';
 
 class SplashPage extends StatefulWidget {
   final VoidCallback onInitializationComplete;
@@ -86,6 +91,21 @@ class _SplashPageState extends State<SplashPage> {
       projectId: "notesapp-6268f",
     ));
     await UserSimplePreferences.init();
-    // _registerServices();
+    _registerServices();
+  }
+
+  void _registerServices() {
+    GetIt.instance.registerSingleton<NavigationService>(
+      NavigationService(),
+    );
+    GetIt.instance.registerSingleton<MediaService>(
+      MediaService(),
+    );
+    GetIt.instance.registerSingleton<CloudStorageService>(
+      CloudStorageService(),
+    );
+    GetIt.instance.registerSingleton<DatabaseService>(
+      DatabaseService(),
+    );
   }
 }
