@@ -48,7 +48,7 @@ class _UsersPageState extends State<UsersPage> {
         _pageProvider = _context.watch<UsersPageProvider>();
         return Container(
           padding: EdgeInsets.symmetric(
-              horizontal: _deviceWidth * 0.03, vertical: _deviceHeight * 0.02),
+              horizontal: _deviceWidth * 0.01, vertical: _deviceHeight * 0.01),
           height: _deviceHeight * 0.98,
           width: _deviceWidth * 0.97,
           child: Column(

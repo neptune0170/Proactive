@@ -30,10 +30,16 @@ class _ChatHomeState extends State<ChatHome> {
         },
         items: [
           BottomNavigationBarItem(
-              label: "Chats", icon: Icon(Icons.chat_bubble_sharp)),
+            label: "Chats",
+            icon: Icon(
+              Icons.chat_bubble_sharp,
+            ),
+          ),
           BottomNavigationBarItem(
             label: "Users",
-            icon: Icon(Icons.supervised_user_circle_sharp),
+            icon: Icon(
+              Icons.supervised_user_circle_sharp,
+            ),
           )
         ],
       ),
