@@ -58,15 +58,6 @@ class _UsersPageState extends State<UsersPage> {
             children: [
               TopBar(
                 'Users',
-                primaryAction: IconButton(
-                  icon: Icon(
-                    Icons.logout,
-                    color: Color.fromRGBO(0, 82, 218, 1.0),
-                  ),
-                  onPressed: () {
-                    _auth.logout();
-                  },
-                ),
               ),
               CustomTextField(
                 onEditingComplete: (_value) {

@@ -44,11 +44,11 @@ class _ChatPageState extends State<ChatPage> {
               this.widget.chat.uid, _auth, _messagesListViewController),
         ),
       ],
-      child: _buildUI(),
+      child: _buildUI(context),
     );
   }
 
-  Widget _buildUI() {
+  Widget _buildUI(BuildContext context) {
     return Builder(
       builder: (BuildContext _context) {
         _pageProvider = _context.watch<ChatPageProvider>();
@@ -70,7 +70,7 @@ class _ChatPageState extends State<ChatPage> {
                       color: Color.fromRGBO(0, 82, 218, 1.0),
                     ),
                     onPressed: () {
-                      _pageProvider.deleteChat();
+                      _pageProvider.deleteChat(context);
                     },
                   ),
                   secondaryAction: IconButton(

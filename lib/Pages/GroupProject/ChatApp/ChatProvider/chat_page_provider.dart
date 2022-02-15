@@ -5,12 +5,15 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:notesapp/Pages/GroupProject/ChatApp/ChatPages/chat_page.dart';
+import 'package:notesapp/Pages/GroupProject/ChatApp/ChatPages/chats_page.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/ChatProvider/authentication_provider.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/Chatservices/cloud_storage.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/Chatservices/database_service.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/Chatservices/media_service.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/Chatservices/navigation_service.dart';
 import 'package:notesapp/Pages/GroupProject/ChatApp/chatModel/chat_message.dart';
+import 'package:notesapp/Pages/GroupProject/group_project_home.dart';
 
 class ChatPageProvider extends ChangeNotifier {
   late DatabaseService _db;
@@ -123,8 +126,9 @@ class ChatPageProvider extends ChangeNotifier {
   //   }
   // }
 
-  void deleteChat() {
-    goBack();
+  void deleteChat(BuildContext context) {
+    Navigator.of(context).pop();
+
     _db.deleteChat(_chatId);
   }
 
