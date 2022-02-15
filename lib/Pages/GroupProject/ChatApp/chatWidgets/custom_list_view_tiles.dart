@@ -10,7 +10,7 @@ class CustomListViewTile extends StatelessWidget {
   final double height;
   final String title;
   final String subtitle;
-  // final String imagePath;
+  final String imagePath;
   final bool isActive;
   final bool isSelected;
   final Function onTap;
@@ -19,7 +19,7 @@ class CustomListViewTile extends StatelessWidget {
     required this.height,
     required this.title,
     required this.subtitle,
-    // required this.imagePath,
+    required this.imagePath,
     required this.isActive,
     required this.isSelected,
     required this.onTap,
