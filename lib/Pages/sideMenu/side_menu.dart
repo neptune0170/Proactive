@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/Pages/BuyMeACoffee/payments.dart';
 import 'package:notesapp/Pages/FilesVault/file_vault.dart';
 import 'package:notesapp/Pages/GroupProject/group_project_home.dart';
 import 'package:notesapp/Pages/home_page.dart';
@@ -6,6 +7,10 @@ import 'package:notesapp/Pages/whatsnew/whatsnew.dart';
 import 'package:provider/provider.dart';
 
 class SideMenu extends StatelessWidget {
+  String name = 'Help us fund this project.';
+  String image =
+      'https://pbs.twimg.com/profile_images/1496172645959999489/Mfzyjk9N_400x400.jpg';
+  int price = 5000;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -81,7 +86,14 @@ class SideMenu extends StatelessWidget {
                   _SideMenuIconTab(
                     iconData: Icons.payment,
                     title: 'Buy me a COFFEE',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Webpayment(
+                                name: name, image: image, price: price),
+                          ));
+                    },
                   ),
                 ],
               ),
@@ -177,119 +189,11 @@ class _SideMenuIconTab extends StatelessWidget {
   }
 }
 
-// class _LibraryPlaylists extends StatefulWidget {
-//   @override
-//   __LibraryPlaylistsState createState() => __LibraryPlaylistsState();
-// }
+class Checkout extends StatelessWidget {
+  const Checkout({Key? key}) : super(key: key);
 
-// class __LibraryPlaylistsState extends State<_LibraryPlaylists> {
-//   ScrollController? _scrollController;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _scrollController = ScrollController();
-//   }
-
-//   @override
-//   void dispose() {
-//     _scrollController?.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Expanded(
-//       child: Scrollbar(
-//         isAlwaysShown: true,
-//         controller: _scrollController,
-//         child: ListView(
-//           controller: _scrollController,
-//           padding: const EdgeInsets.symmetric(vertical: 12.0),
-//           physics: const ClampingScrollPhysics(),
-//           children: [
-//             Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 Padding(
-//                   padding: const EdgeInsets.symmetric(
-//                     vertical: 8.0,
-//                     horizontal: 16.0,
-//                   ),
-//                   child: Text(
-//                     'YOUR LIBRARY',
-//                     // style: Theme.of(context).textTheme.headline4,
-//                     // overflow: TextOverflow.ellipsis,
-//                   ),
-//                 ),
-//                 ...yourLibrary
-//                     .map((e) => ListTile(
-//                           dense: true,
-//                           title: Text(
-//                             e,
-//                             // style: Theme.of(context).textTheme.bodyText2,
-//                             // overflow: TextOverflow.ellipsis,
-//                           ),
-//                           onTap: () {},
-//                         ))
-//                     .toList(),
-//               ],
-//             ),
-//             const SizedBox(height: 24.0),
-//             Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 Padding(
-//                   padding: const EdgeInsets.symmetric(
-//                     vertical: 8.0,
-//                     horizontal: 16.0,
-//                   ),
-//                   child: Text(
-//                     'PLAYLISTS',
-//                     // style: Theme.of(context).textTheme.headline4,
-//                     // overflow: TextOverflow.ellipsis,
-//                   ),
-//                 ),
-//                 ...playlists
-//                     .map((e) => ListTile(
-//                           dense: true,
-//                           title: Text(
-//                             e,
-//                             // style: Theme.of(context).textTheme.bodyText2,
-//                             // overflow: TextOverflow.ellipsis,
-//                           ),
-//                           onTap: () {},
-//                         ))
-//                     .toList(),
-//               ],
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// const yourLibrary = [
-//   'Made For You',
-//   'Recently Played',
-//   'Liked Songs',
-//   'Albums',
-//   'Artists',
-//   'Podcasts',
-// ];
-
-// const playlists = [
-//   'Today\'s Top Hits',
-//   'Discover Weekly',
-//   'Release Radar',
-//   'Chill',
-//   'Background',
-//   'lofi hip hop music - beats to relax/study to',
-//   'Vibes Right Now',
-//   'Time Capsule',
-//   'On Repeat',
-//   'Summer Rewind',
-//   'Dank Doggo Tunes',
-//   'Sleepy Doge',
-// ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
