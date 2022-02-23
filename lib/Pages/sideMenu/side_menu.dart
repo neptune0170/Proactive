@@ -42,16 +42,19 @@ class SideMenu extends StatelessWidget {
                     ],
                   ),
                   _SideMenuIconTab(
+                    beta: false,
                     iconData: Icons.home,
                     title: 'Home',
                     onTap: () {},
                   ),
                   _SideMenuIconTab(
+                    beta: false,
                     iconData: Icons.calendar_today_rounded,
                     title: 'Calendar',
                     onTap: () {},
                   ),
                   _SideMenuIconTab(
+                    beta: false,
                     iconData: Icons.local_post_office_outlined,
                     title: 'Files Vault',
                     onTap: () {
@@ -60,6 +63,7 @@ class SideMenu extends StatelessWidget {
                     },
                   ),
                   _SideMenuIconTab(
+                    beta: true,
                     iconData: Icons.group_add,
                     title: 'Group Project',
                     onTap: () {
@@ -70,6 +74,7 @@ class SideMenu extends StatelessWidget {
                     },
                   ),
                   _SideMenuIconTab(
+                    beta: false,
                     iconData: Icons.error_outline,
                     color: Colors.green,
                     title: 'What\'s New',
@@ -79,13 +84,15 @@ class SideMenu extends StatelessWidget {
                     },
                   ),
                   _SideMenuIconTab(
+                    beta: false,
                     iconData: Icons.group_rounded,
                     title: 'Contributions',
                     onTap: () {},
                   ),
                   _SideMenuIconTab(
+                    beta: true,
                     iconData: Icons.payment,
-                    title: 'Buy me a COFFEE',
+                    title: 'Buy me a coffee',
                     onTap: () {
                       Navigator.push(
                           context,
@@ -162,30 +169,50 @@ class _SideMenuIconTab extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final Color? color;
+  final bool? beta;
   const _SideMenuIconTab(
       {Key? key,
       required this.iconData,
       required this.title,
       required this.onTap,
+      required this.beta,
       this.color})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(
-        iconData,
-        color: color == null ? Colors.white : color,
-        // color: Theme.of(context).iconTheme.color,
-        size: 28.0,
+    return Stack(children: [
+      if (beta == true)
+        Positioned(
+            top: 33,
+            left: 67,
+            child: Container(
+                height: 14,
+                width: 40,
+                decoration: BoxDecoration(
+                    color: Colors.red, borderRadius: BorderRadius.circular(2)),
+                child: Center(
+                  child: Text('BETA',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10)),
+                ))),
+      ListTile(
+        leading: Icon(
+          iconData,
+          color: color == null ? Colors.white : color,
+          // color: Theme.of(context).iconTheme.color,
+          size: 28.0,
+        ),
+        title: Text(
+          title,
+          style: TextStyle(color: Colors.white),
+          overflow: TextOverflow.ellipsis,
+        ),
+        onTap: onTap,
       ),
-      title: Text(
-        title,
-        style: TextStyle(color: Colors.white),
-        overflow: TextOverflow.ellipsis,
-      ),
-      onTap: onTap,
-    );
+    ]);
   }
 }
 
