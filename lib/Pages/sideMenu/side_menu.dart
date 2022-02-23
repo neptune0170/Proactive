@@ -137,29 +137,6 @@ class SideMenu extends StatelessWidget {
           ],
         ),
       ),
-      // Text('HEEL'),
-
-      //     child: Column(
-      //       children: [
-      //         _SideMenuIconTab(
-      //           iconData: Icons.home,
-      //           title: 'Home',
-      //           onTap: () {},
-      //         ),
-      //         _SideMenuIconTab(
-      //           iconData: Icons.search,
-      //           title: 'Search',
-      //           onTap: () {},
-      //         ),
-      //         _SideMenuIconTab(
-      //           iconData: Icons.audiotrack,
-      //           title: 'Radio',
-      //           onTap: () {},
-      //         ),
-      //         const SizedBox(height: 12.0),
-      //         _LibraryPlaylists(),
-      //       ],
-      //     ),
     );
   }
 }
