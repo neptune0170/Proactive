@@ -76,9 +76,6 @@ class MyApp extends StatelessWidget {
           },
         )
 
-        // user == null ? LoginPage() : HomePage()
-        // ChangeNotifierProvider(
-        //     create: (context) => TimerInfo(), child: HomePage())
         );
 
  
