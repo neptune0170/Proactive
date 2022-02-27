@@ -86,7 +86,6 @@ class _ChatPageState extends State<ChatPage> {
                 ),
                 SingleChildScrollView(
                   child: Container(
-                    // color: Colors.blue[100],
                     padding: EdgeInsets.all(5),
                     height: _deviceHeight * .80,
                     width: _deviceWidth * .7,
