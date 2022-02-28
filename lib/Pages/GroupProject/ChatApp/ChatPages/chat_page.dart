@@ -94,28 +94,7 @@ class _ChatPageState extends State<ChatPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        // TopBar(
-                        //   this.widget.chat.title(),
-                        //   fontSize: 10,
-                        //   primaryAction: IconButton(
-                        //     icon: Icon(
-                        //       Icons.delete,
-                        //       color: Color.fromRGBO(0, 82, 218, 1.0),
-                        //     ),
-                        //     onPressed: () {
-                        //       _pageProvider.deleteChat();
-                        //     },
-                        //   ),
-                        //   secondaryAction: IconButton(
-                        //     icon: Icon(
-                        //       Icons.arrow_back,
-                        //       color: Color.fromRGBO(0, 82, 218, 1.0),
-                        //     ),
-                        //     onPressed: () {
-                        //       Navigator.of(context).pop();
-                        //     },
-                        //   ),
-                        // ),
+                        
                         _messagesListView(),
 
                         _sendMessageForm(),
