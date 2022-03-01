@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ViewNote extends StatefulWidget {
   int? priorityIndex;
@@ -183,6 +184,15 @@ class _ViewNoteState extends State<ViewNote> {
                               },
                             ),
                           ),
+                          SizedBox(
+                            width: 100,
+                          ),
+                          ElevatedButton.icon(
+                              onPressed: () async {
+                                await Share.share('text');
+                              },
+                              icon: Icon(Icons.share),
+                              label: Text("Share"))
                         ],
                       ),
                       const SizedBox(height: 10),

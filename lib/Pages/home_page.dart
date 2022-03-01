@@ -772,35 +772,37 @@ class _HomePageState extends State<HomePage> {
                           color: bg,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  data['title'] != null
-                                      ? "${data['title']}".toUpperCase()
-                                      : '',
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    data['title'] != null
+                                        ? "${data['title']}".toUpperCase()
+                                        : '',
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  data['description'] != null
-                                      ? "${data['description']}"
-                                      : '',
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 7,
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.white,
+                                  SizedBox(
+                                    height: 10,
                                   ),
-                                ),
-                                //
-                              ],
+                                  Text(
+                                    data['description'] != null
+                                        ? "${data['description']}"
+                                        : '',
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 6,
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  //
+                                ],
+                              ),
                             ),
                           ),
                         ),
