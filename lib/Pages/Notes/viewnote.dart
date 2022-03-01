@@ -187,12 +187,12 @@ class _ViewNoteState extends State<ViewNote> {
                               ),
                             ),
                             SizedBox(
-                              width: 100,
+                              width: 80,
                             ),
                             ElevatedButton.icon(
                                 onPressed: () async {
                                   await Share.share(
-                                      "*${widget.data['title']}*  ${widget.data['description']}       _*Shared by using notesapp-6268f.web.app/*_");
+                                      "*${widget.data['title']}* ${widget.data['description']} _*Shared by notesapp-6268f.web.app/*_");
                                 },
                                 icon: Icon(Icons.share),
                                 label: Text("Share"))
