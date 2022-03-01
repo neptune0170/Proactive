@@ -192,7 +192,7 @@ class _ViewNoteState extends State<ViewNote> {
                             ElevatedButton.icon(
                                 onPressed: () async {
                                   await Share.share(
-                                      "*${widget.data['title']}* - ${widget.data['description']}                [Share your notes using https://notesapp-6268f.web.app/]");
+                                      "*${widget.data['title']}*  ${widget.data['description']}       _*Shared by using notesapp-6268f.web.app/*_");
                                 },
                                 icon: Icon(Icons.share),
                                 label: Text("Share"))
