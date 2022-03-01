@@ -161,40 +161,48 @@ class _ViewNoteState extends State<ViewNote> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          const Text(
-                            'Priority :',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 21),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            height: 38,
-                            width: 300,
-                            child: ListView.builder(
-                              itemCount: priorityList.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return priorityChip(context, index);
-                              },
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Priority :',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 21),
                             ),
-                          ),
-                          SizedBox(
-                            width: 100,
-                          ),
-                          ElevatedButton.icon(
-                              onPressed: () async {
-                                await Share.share('text');
-                              },
-                              icon: Icon(Icons.share),
-                              label: Text("Share"))
-                        ],
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              height: 38,
+                              width: 300,
+                              child: ListView.builder(
+                                itemCount: priorityList.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return priorityChip(context, index);
+                                },
+                              ),
+                            ),
+                            SizedBox(
+                              width: 100,
+                            ),
+                            ElevatedButton.icon(
+                                onPressed: () async {
+                                  await Share.share('text');
+                                },
+                                icon: Icon(Icons.share),
+                                label: Text("Share"))
+                          ],
+                        ),
                       ),
+                      // (
+                      //   child: Row(
+
+                      //   ),
+                      // ),
                       const SizedBox(height: 10),
                       TextFormField(
                         decoration: InputDecoration.collapsed(
