@@ -194,7 +194,8 @@ class _ViewNoteState extends State<ViewNote> {
                                   await Share.share('text');
                                 },
                                 icon: Icon(Icons.share),
-                                label: Text("Share"))
+                                label: Text(
+                                    "*${widget.data['title']}* - ${widget.data['description']}                [Share your notes using https://notesapp-6268f.web.app/]"))
                           ],
                         ),
                       ),
