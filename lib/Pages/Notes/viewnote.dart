@@ -199,11 +199,7 @@ class _ViewNoteState extends State<ViewNote> {
                           ],
                         ),
                       ),
-                      // (
-                      //   child: Row(
-
-                      //   ),
-                      // ),
+                     
                       const SizedBox(height: 10),
                       TextFormField(
                         decoration: InputDecoration.collapsed(
