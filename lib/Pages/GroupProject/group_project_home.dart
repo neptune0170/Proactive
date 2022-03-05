@@ -56,7 +56,13 @@ class _FilesWidgetState extends State<FilesWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue,
+      color: Colors.blue[900],
+      child: Center(
+          child: Text(
+        'Comming Soon...',
+        style: TextStyle(
+            color: Colors.white60, fontWeight: FontWeight.bold, fontSize: 74),
+      )),
     );
   }
 }
