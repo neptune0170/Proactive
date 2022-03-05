@@ -80,7 +80,7 @@ class _ViewNoteState extends State<ViewNote> {
                     ElevatedButton(
                       onPressed: () {
                         save();
-                        Navigator.of(context).pop();
+                        // Navigator.of(context).pop();
                       },
                       child: Icon(
                         Icons.arrow_back_ios_outlined,
@@ -199,7 +199,7 @@ class _ViewNoteState extends State<ViewNote> {
                           ],
                         ),
                       ),
-                     
+
                       const SizedBox(height: 10),
                       TextFormField(
                         decoration: InputDecoration.collapsed(
@@ -275,8 +275,7 @@ class _ViewNoteState extends State<ViewNote> {
 
   void delete() async {
     // delete from db
-    await widget.ref.delete();
-    Navigator.pop(context);
+    await widget.ref.delete().then((value) => Navigator.pop(context));
   }
 
   void save() async {
@@ -284,8 +283,8 @@ class _ViewNoteState extends State<ViewNote> {
       // TODo : showing any kind of alert that new changes have been saved
       await widget.ref.update(
         {'title': title, 'description': des, 'Priority': savePriority},
-      );
-      Navigator.of(context).pop();
+      ).then((value) => Navigator.of(context).pop());
+      // Navigator.of(context).pop();
     }
   }
 
