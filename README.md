@@ -32,6 +32,7 @@ files vault - save your important files in your personal vault.
 
 ## Comming Soon...
 Google Calendar Integration
+Phone Auth
 
 
 ## OVERVIEW/IMAGES
@@ -39,6 +40,7 @@ Google Calendar Integration
 ![](overviewimages/2.JPG)
 ![](overviewimages/3.JPG)
 ![](overviewimages/4.JPG)
+
 
 
 
