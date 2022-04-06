@@ -33,7 +33,7 @@ files vault - save your important files in your personal vault.
 ## Comming Soon...
 Google Calendar Integration
 Phone Auth
-statemanagement
+statemanagement soon
 
 ## OVERVIEW/IMAGES
 ![](overviewimages/1.JPG)
