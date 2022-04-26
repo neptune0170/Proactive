@@ -20,7 +20,7 @@ Task/Notes- When you open your app there ,First thing you will look is the task 
  (Helps in reducing time to decide what to do next, and have a clear goal for a day)
  
 Streak :- By adding daily streaks to your tasks ,helps you be consistent and at the end of the day gives statisfaction .
- ( if you break a streak , counter again goes to 0 😭 , so be consistent 🙂)
+ ( if you break a streak , counter again goes to 0 😭 , so be consistent 🙂).
 
 files vault - save your important files in your personal vault.
  
