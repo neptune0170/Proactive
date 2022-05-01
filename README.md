@@ -17,7 +17,7 @@ Some of these problem can be fixed by proactive.
 
 Features:-
 Task/Notes- When you open your app there ,First thing you will look is the task section, that are the tasks that you have to do that day . 
- (Helps in reducing time to decide what to do next, and have a clear goal for a day)
+ (Helps in reducing time to decide what to do next, and have a clear goal for a day).
  
 Streak :- By adding daily streaks to your tasks ,helps you be consistent and at the end of the day gives statisfaction .
  ( if you break a streak , counter again goes to 0 😭 , so be consistent 🙂).
