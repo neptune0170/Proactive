@@ -1,7 +1,7 @@
 # Proactive
 https://notesapp-6268f.web.app/#/
 
-## What is Proactive?
+## What is Proactive ?
 
 Proactive is a simple tool which helps you to achieve difficult goals quickly.
 
