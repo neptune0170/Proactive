@@ -1,10 +1,9 @@
 # Proactive
 https://notesapp-6268f.web.app/#/
 
-## What is Proactive?
+## What is Proactive ?
 
 Proactive is a simple tool which helps you to achieve difficult goals quickly.
-
 ok, but how?
 
 before telling how ,lets see why some goals looks difficult.
@@ -17,10 +16,10 @@ Some of these problem can be fixed by proactive.
 
 Features:-
 Task/Notes- When you open your app there ,First thing you will look is the task section, that are the tasks that you have to do that day . 
- (Helps in reducing time to decide what to do next, and have a clear goal for a day)
+ (Helps in reducing time to decide what to do next, and have a clear goal for a day).
  
 Streak :- By adding daily streaks to your tasks ,helps you be consistent and at the end of the day gives statisfaction .
- ( if you break a streak , counter again goes to 0 😭 , so be consistent 🙂)
+ ( if you break a streak , counter again goes to 0 😭 , so be consistent 🙂).
 
 files vault - save your important files in your personal vault.
  
@@ -30,10 +29,10 @@ files vault - save your important files in your personal vault.
 (beta) Donate - If you like our app , donate via razor pay.
 
 
-## Comming Soon......
+## Comming Soon........
 Google Calendar Integration
 Phone Auth
-statemanagement soon....
+statemanagement soon...........
 
 ## OVERVIEW/IMAGES
 ![](overviewimages/1.JPG)
