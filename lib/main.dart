@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        title: 'Notes App',
+        title: 'Proactive App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             fontFamily: 'Montserrat',

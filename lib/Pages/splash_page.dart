@@ -37,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Notes App',
+      title: 'Proactive App',
       theme: ThemeData(
         backgroundColor: Colors.black,
         scaffoldBackgroundColor: Colors.black,
