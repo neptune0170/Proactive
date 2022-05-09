@@ -3,12 +3,12 @@ https://notesapp-6268f.web.app/#/
 
 ## What is Proactive ?
 
-Proactive is a simple tool which helps you to achieve difficult goals quickly.
+Proactive is a simple tool which helps you to achieve difficult goals quickly..
 ok, but how?
 
 before telling how ,lets see why some goals looks difficult.
 
-To achieve any new goal it requires time , patience and consistecy.
+To achieve any new goal it requires time , patience and  consistency.
 Most of us when starts a new goal to learn new thing, we were energetic but after few days or week we loose this energy and drop the plan to achieve that goal and switch to something else.
 Now the questions is why we drop the plan ?
 When the burden of doing it outweighs the joy, you starts forgeting your initial goal.
