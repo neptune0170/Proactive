@@ -28,7 +28,6 @@ files vault - save your important files in your personal vault.
 
 (beta) Donate - If you like our app , donate via razor pay.
 
-
 ## Comming Soon......
 Google Calendar Integration
 Phone Auth
