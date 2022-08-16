@@ -23,8 +23,8 @@ Streak :- By adding daily streaks to your tasks ,helps you be consistent and at 
 
 files vault - save your important files in your personal vault.
  
-(beta) Group project- When there is multiple people in a project to assign and track which task was given to whom is bit difficult .
-(share notes files with group memeber and chat about the project)
+(beta) Group project- When there are many people in a project it is difficult to assign and track which task was given to whome ,This is somewhat can be fixed by this feature
+(share notes files with group member , chat ,assign task in the project)
 
 (beta) Donate - If you like our app , donate via razor pay.
 
